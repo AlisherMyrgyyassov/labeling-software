@@ -1,9 +1,16 @@
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk
+import cv2
 
 click_positions = []
 current_picture = ""
+
+
+
+haarcascade = "haarcascade_frontalface_alt2.xml"
+detector = cv2.CascadeClassifier(haarcascade)
+
 
 app = tk.Tk()
 app.title("Image Viewer")
@@ -36,6 +43,30 @@ def select_image():
         global current_picture
         current_picture = file_path.split("/")[-1]
 
+        faces = detector.detectMultiScale(cv2.imread(file_path))
+        face_coordinates = faces[0]
+        # getting values in this format [[280  46 210 210]]
+        # (640, 480) = (x, y)
+        if len(faces) == 1:
+            center_x = int(face_coordinates[0] + face_coordinates[2]/2)
+            center_y = int(face_coordinates[1] + face_coordinates[3]/2)
+
+            x_topright = center_x + 160
+            if x_topright < 320: x_topright = 320
+            if x_topright > 640 : x_topright = 640
+
+            y_topright = center_y + 120
+            if y_topright < 240: y_topright = 240
+            if y_topright > 480 : y_topright = 480
+
+            bbox = (x_topright-320, y_topright-240, x_topright, y_topright)
+            image = image.crop(bbox)
+            print (image.size)
+            print ("cropped with the coordinates", bbox)
+
+            print("Faces:\n", face_coordinates)
+            
+
         orig_size = image.size
         print(orig_size)
 
@@ -48,6 +79,9 @@ def select_image():
         canvas.create_image(0, 0, anchor=tk.NW, image=image_tk)
         canvas.image = image_tk  # Save a reference to avoid garbage collection
 
+        
+        
+        
 
 b_select_image = tk.Button(app, command=select_image, text = "select image")
 b_select_image.place(relx = 0.05, rely=0.03)
