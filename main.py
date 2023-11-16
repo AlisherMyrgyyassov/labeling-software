@@ -72,7 +72,6 @@ def normalize_to_absolute(event_x, event_y):
 
     return abs_coord_x, abs_coord_y
 
-click_positions = []
 current_picture = ""
 current_folder = ""
 current_image_id = ""
@@ -225,7 +224,7 @@ def open_image(file_path):
     file_names = os.listdir(folder_path)
     # Perform a natural sort on the file names
     sorted_file_names = sorted(file_names, key=lambda x: int(os.path.splitext(x)[0].split('_')[1]))
-
+    images_listbox.delete(0, tk.END)
     for file_name in sorted_file_names:
         images_listbox.insert(tk.END, file_name)
 
@@ -293,4 +292,4 @@ b_next = tk.Button(app, text=">")
 app.mainloop()
 
 # Print the list of mouse click positions
-print(click_positions)
+#print(click_positions)
