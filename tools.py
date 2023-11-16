@@ -15,6 +15,15 @@ def get_features_names(file_path):
     
     return non_empty_lines
 
+def select_item_in_listbox(listbox, item_to_select):
+    for index, item in enumerate(listbox.get(0, 'end')):
+        if item == item_to_select:
+            listbox.selection_clear(0, 'end')  # Clear any existing selections
+            listbox.selection_set(index)  # Select the item
+            listbox.see(index)  # Ensure the item is visible
+            break
+
+
 """
 # Create an empty DataFrame
 df = pd.DataFrame(columns=get_features_names("features.txt"))
