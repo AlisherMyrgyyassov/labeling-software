@@ -1,5 +1,6 @@
 import tkinter as tk
 import cv2
+import pandas as pd
 
 def get_features_names(file_path):
     """
@@ -14,7 +15,15 @@ def get_features_names(file_path):
     
     return non_empty_lines
 
+"""
+# Create an empty DataFrame
+df = pd.DataFrame(columns=get_features_names("features.txt"))
 
+# Write the DataFrame to a CSV file
+df.to_csv("data.csv", index=False)
+"""
+df = pd.read_csv("data.csv")
+print (df)
 
-print(get_features_names("features.txt"))
+#print(get_features_names("features.txt"))
 
