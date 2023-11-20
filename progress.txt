@@ -1,0 +1,12 @@
+V - make the selection always visible
+V -treeview select
+treeview selection different color (optional)
+drag and drop
+V - next and prev buttons
+V - add number before the terms
+V - zoom less
+V - numbers above the spot
+
+
+fixed a bug when multiple faces or zero faces ruin the zoom
+fixed a bug whem multiple faces interfered with each other with landmarks
