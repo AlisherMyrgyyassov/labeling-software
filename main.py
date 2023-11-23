@@ -88,7 +88,7 @@ def auto_pick_landmarks():
         index, box = max(enumerate(faces), key=lambda x: x[1][2])
         _, landmarks = landmark_detector.fit(img, np.array([faces[index].tolist()]))
 
-        selected_indices = [18, 21, 22, 26, 36, 39, 42, 45, 0, 30, 16, 48, 54, 8]
+        selected_indices = [17, 21, 22, 26, 36, 39, 42, 45, 0, 30, 16, 48, 54, 8]
         selected_landmarks = [landmarks[0][0][i] for i in selected_indices]
         for i, item in enumerate(tree.get_children()):
             coords = selected_landmarks[i]
@@ -115,7 +115,7 @@ haarcascade = "haarcascade_frontalface_alt2.xml"
 detector = cv2.CascadeClassifier(haarcascade)
 
 # https://www.google.com/url?sa=i&url=https%3A%2F%2Fanswers.opencv.org%2Fquestion%2F192167%2Ffacemarklbf-training-fewer-landmark-points-than-68%2F&psig=AOvVaw1Qt5otMj4qtC0pPcrgD6g7&ust=1700545351471000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJiow57v0YIDFQAAAAAdAAAAABAE
-LBFmodel = "LFBmodel.yaml"
+LBFmodel = "lbfmodel.yaml"
 landmark_detector  = cv2.face.createFacemarkLBF()
 landmark_detector.loadModel(LBFmodel)
 

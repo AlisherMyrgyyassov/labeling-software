@@ -10,3 +10,9 @@ V - numbers above the spot
 
 fixed a bug when multiple faces or zero faces ruin the zoom
 fixed a bug whem multiple faces interfered with each other with landmarks
+
+
+add keyboard hotkeys
+installation
+
+11 deleted
